@@ -117,7 +117,13 @@ function App() {
         <h1>Module List</h1>
         {
           moduleList.map((module) => {
-            return(<p>{module.ModuleCode}</p>)
+            return(
+              <div key={module.ModuleCode}>
+                <p>{module.ModuleCode}</p>
+                <p>{module.ModuleName}</p>
+
+              </div>
+            )
           }) //map will go through the array content one by one
         }
       </main>
