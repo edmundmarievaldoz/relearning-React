@@ -1,6 +1,4 @@
-import Header from "./Header.jsx";
-import Navbar from "./Navbar.jsx";
-import Footer from "./Footer.jsx";
+import Layout from "./Layout.jsx";
 import './App.scss';
 
 function App() {
@@ -241,13 +239,8 @@ function App() {
   ];
 
   return (
-    <div className = "Layout">
+    <Layout userName={loggedInUser}>
 
-      <Header userName={loggedInUser}/>
-
-      <Navbar />
-
-      <main>
         <h1>Home</h1>
         <p>This is the homepage of the basic React demo.</p>
 
@@ -288,11 +281,7 @@ function App() {
             }) //backticks were used to concatenate the first name and last name together, and the substring was used to only show the first 8 characters of the email address
           }
         </div>
-      </main>
-
-      <Footer />
-
-    </div>
+    </Layout>
   )
 }
 
