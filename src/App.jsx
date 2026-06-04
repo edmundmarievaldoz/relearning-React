@@ -1,8 +1,9 @@
-import './App.scss'
+import Header from "./Header.jsx";
+import './App.scss';
 
 function App() {
 
-  const loggedInUser = "Edmund";
+  const loggedInUser = "Hunter";
 
   const moduleList = [
     {
@@ -239,10 +240,9 @@ function App() {
 
   return (
     <div className = "Layout">
-      <header>
-        <h1>Basic React Demo</h1>
-        <p className ="welcome"> Welcome {loggedInUser}!</p>
-      </header>
+
+      <Header userName={loggedInUser}/>
+
 
       <nav>
         <div className = "navItem">
@@ -259,7 +259,7 @@ function App() {
       <main>
         <h1>Home</h1>
         <p>This is the homepage of the basic React demo.</p>
-        
+
         <h1>Module List</h1>
         <div className = "cardContainer">
           {
@@ -282,7 +282,7 @@ function App() {
         <h1>Student List</h1>
         <div className = "cardContainer">
           {
-            studentList.map((student) =>{
+            studentList.map((student) => {
               return(
                 <div className="studentCard" key={student.UserID}>
 
@@ -294,7 +294,7 @@ function App() {
 
                 </div>
               )
-            }) //map will go through the array content one by one
+            }) //backticks were used to concatenate the first name and last name together, and the substring was used to only show the first 8 characters of the email address
           }
         </div>
       </main>
