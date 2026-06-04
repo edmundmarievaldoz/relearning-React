@@ -1,4 +1,5 @@
 import Header from "./Header.jsx";
+import Navbar from "./Navbar.jsx";
 import './App.scss';
 
 function App() {
@@ -243,18 +244,7 @@ function App() {
 
       <Header userName={loggedInUser}/>
 
-
-      <nav>
-        <div className = "navItem">
-          <a to="/">Home</a>
-        </div>
-        <div className = "navItem">
-          <a to="/modules">Modules</a>
-        </div>
-        <div className = "navItem">
-          <a to="/students">Students</a>
-        </div>
-      </nav>
+      <Navbar />
 
       <main>
         <h1>Home</h1>
