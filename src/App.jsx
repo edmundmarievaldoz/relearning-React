@@ -115,17 +115,20 @@ function App() {
 
       <main>
         <h1>Module List</h1>
-        {
-          moduleList.map((module) => {
-            return(
-              <div key={module.ModuleCode}>
-                <p>{module.ModuleCode}</p>
-                <p>{module.ModuleName}</p>
+        <div className = "cardContainer">
+          {
+            moduleList.map((module) => {
+              return(
+                <div className="card" key={module.ModuleCode}>
+                  <p>{module.ModuleCode}</p>
+                  <p>{module.ModuleName}</p>
+                  <img src={module.ModuleImageURL}/>
 
-              </div>
-            )
-          }) //map will go through the array content one by one
-        }
+                </div>
+              )
+            }) //map will go through the array content one by one
+          }
+        </div>
       </main>
 
       <footer>
