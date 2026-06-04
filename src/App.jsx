@@ -1,5 +1,6 @@
 import Header from "./Header.jsx";
 import Navbar from "./Navbar.jsx";
+import Footer from "./Footer.jsx";
 import './App.scss';
 
 function App() {
@@ -289,9 +290,8 @@ function App() {
         </div>
       </main>
 
-      <footer>
-        <p className="thankyou">Database ReLearining React</p>
-      </footer>
+      <Footer />
+
     </div>
   )
 }
