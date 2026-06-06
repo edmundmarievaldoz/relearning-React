@@ -1,4 +1,5 @@
-import Layout from "./Layout.jsx";
+import Layout from "./components/layout/Layout.jsx";
+import Card from "./components/UI/Card.jsx";
 import './App.scss';
 
 function App() {
@@ -250,13 +251,11 @@ function App() {
             moduleList.map((module) => {
               return(
                 <div className="moduleCard" key={module.ModuleID}>
-
-                  <div className="card">
+                  <Card>
                     <p>{module.ModuleCode}</p>
                     <p>{module.ModuleName}</p>
                     <img src={module.ModuleImageURL}/>
-
-                  </div>
+                  </Card>
                 </div>
               )
             }) //map will go through the array content one by one
@@ -270,11 +269,11 @@ function App() {
               return(
                 <div className="studentCard" key={student.UserID}>
 
-                  <div className="card">
+                  <Card>
                     <p>{student.UserEmail.substring(0,8)}</p>
                     <p>{`${student.UserFirstname} ${student.UserLastname}`}</p>
                     <img src={student.UserImageURL}/>
-                  </div>
+                  </Card>
 
                 </div>
               )
