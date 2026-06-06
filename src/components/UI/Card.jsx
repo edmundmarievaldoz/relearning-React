@@ -3,7 +3,7 @@ import './Card.scss';
 
 export function CardContainter (props) {
     return (
-        <div className="container">
+        <div className="cardContainer">
             { props.children }
         </div>
     );
