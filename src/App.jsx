@@ -263,13 +263,13 @@ function App() {
         </CardContainer>
 
         <h1>Student List</h1>
-        <CardContainer>
+        <CardContainer> {/* was previously div with classname CardContainer, but was changed to CardContainer to use the styling from the CardContainer component, and to wrap the student cards in the container*/}
           {
             studentList.map((student) => {
               return(
                 <div className="studentCard" key={student.UserID}>
 
-                  <Card>
+                  <Card> {/*was previously a div with classname Card, but was changed to Card to use the styling from the Card component*/}
                     <p>{student.UserEmail.substring(0,8)}</p>
                     <p>{`${student.UserFirstname} ${student.UserLastname}`}</p>
                     <img src={student.UserImageURL}/>
