@@ -1,5 +1,5 @@
 import Layout from "./components/layout/Layout.jsx";
-import Card from "./components/UI/Card.jsx";
+import {CardContainer, Card} from "./components/UI/Card.jsx";
 import './App.scss';
 
 function App() {
@@ -246,7 +246,7 @@ function App() {
         <p>This is the homepage of the basic React demo.</p>
 
         <h1>Module List</h1>
-        <div className = "cardContainer">
+        <CardContainer>
           {
             moduleList.map((module) => {
               return(
@@ -260,10 +260,10 @@ function App() {
               )
             }) //map will go through the array content one by one
           }
-        </div>
+        </CardContainer>
 
         <h1>Student List</h1>
-        <div className = "cardContainer">
+        <CardContainer>
           {
             studentList.map((student) => {
               return(
@@ -279,7 +279,7 @@ function App() {
               )
             }) //backticks were used to concatenate the first name and last name together, and the substring was used to only show the first 8 characters of the email address
           }
-        </div>
+        </CardContainer>
     </Layout>
   )
 }

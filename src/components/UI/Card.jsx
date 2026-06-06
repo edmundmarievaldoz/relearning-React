@@ -1,11 +1,18 @@
 import './Card.scss';
 
-function Card (props) {
+
+export function CardContainter (props) {
+    return (
+        <div className="container">
+            { props.children }
+        </div>
+    );
+}
+
+export function Card (props) {
     return (
         <div className="card">
             { props.children }
         </div>
     );
 }
-
-export default Card;
