@@ -1,9 +1,9 @@
 import './Card.scss';
 
 
-export function CardContainter (props) {
+export function CardContainer (props) {
     return (
-        <div className="cardContainer">
+        <div className="CardContainer">
             { props.children }
         </div>
     );
