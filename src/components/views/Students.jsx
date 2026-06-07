@@ -165,14 +165,14 @@ const newStudent = {
     };
 //state
 
-const [length, setLength] = useState(studentList.length); //just a variable that keeps track of something if it has updated
+const [students, setStudents] = useState(studentList); //just a variable that keeps track of something if it has updated
 
 //handlers
 const handleAdd = (student) => {
   student.UserID = Math.floor(10000 * Math.random());
-  studentList.push(student); {/* the student here is referring to newStudent, see the button below why */}
-  console.log(`Length of the student list:  ${studentList.length}`);
-  setLength(studentList.length); {/* stduentList coz new student got pushed in the list */}
+  setStudents([...students, newStudent]); //the new array is form from the contents of the old array
+  // and tagged on the end of it are the new student
+  console.log(`Length of the students:  ${studentList.length}`);
 };
 
 //views
@@ -181,7 +181,7 @@ const handleAdd = (student) => {
         <h1>Student List</h1>
         <CardContainer> {/* was previously div with classname CardContainer, but was changed to CardContainer to use the styling from the CardContainer component, and to wrap the student cards in the container*/}
           {
-            studentList.map((student) => {
+            students.map((student) => {
               return(
                 <div className="studentCard" key={student.UserID}>
 
