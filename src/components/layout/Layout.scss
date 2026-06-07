@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap");
 
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Catamaran', sans-serif;
 }
 
 div.Layout {
@@ -16,6 +16,6 @@ div.Layout {
 
     main{
         padding: 20px;
-        background: white;
+        background: #F1E2D1;
     }
 }
