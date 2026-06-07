@@ -1,16 +1,19 @@
-# React + Vite
+# Do not forget
+1. Run npm install
+2. npm install -d sass
+3. npm install react-router-dom
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## How to start a React Folder
+1. npm create vite@latest . -- --template react
+2. Click react
+3. Click JavaScript
+4. and install npm packages
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## How to Connect to GitHub
+1. git init
+2. git add .
+3. git commit - "name of the git"
+4. create repo in github untick readme and git core
+5. type in git remote in the terminal from github (copy and paste)
+6. git branch -M main
+7. git push -u origin main
