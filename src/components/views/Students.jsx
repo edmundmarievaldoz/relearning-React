@@ -1,8 +1,6 @@
 import './Students.scss';
 import {CardContainer, Card} from "../UI/Card.jsx";
 
-function Students() {
-// hardcoded student list, which will be replaced with data from the database in the future
   const studentList = [
     {
       UserID: 275,
@@ -145,6 +143,36 @@ function Students() {
       UserYearName: '2022-23',
     },
   ];
+
+function Students() {
+// hardcoded student list, which will be replaced with data from the database in the future
+
+//initialisation (an obj with new details of a new object like student)
+const newStudent = {
+      UserID: 275,
+      UserFirstname: 'Sholeh',
+      UserLastname: 'ABBAS',
+      UserEmail: 'K2955214@kingston.ac.uk',
+      UserRegistered: 0,
+      UserLevel: 4,
+      UserYearID: 1,
+      UserUsertypeID: 2,
+      UserImageURL:
+        'https://images.generated.photos/evdpMs0ZUOoMA0ACfCy98zzmy347YQxRmrPCWHp3v0g/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzUzMTEyLmpwZw.jpg',
+      UserUsertypeName: 'Student',
+      UserYearName: '2022-23',
+    };
+//state
+//handlers
+const handleAdd = (student) => {
+  student.UserID = Math.floor(10000 * Math.random());
+  studentList.push(student); {/* the student here is referring to newStudent, see the button below why */}
+  console.log(`Length of the student list:  ${studentList.length}`);
+
+
+};
+
+//views
     return (
         <>
         <h1>Student List</h1>
@@ -165,6 +193,7 @@ function Students() {
             }) //backticks were used to concatenate the first name and last name together, and the substring was used to only show the first 8 characters of the email address
           }
         </CardContainer>
+        <button onClick={() => handleAdd(newStudent)}>Add a New Student</button>
         </>
     );
 }
