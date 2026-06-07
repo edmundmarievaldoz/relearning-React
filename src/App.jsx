@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout.jsx";
 import Home from "./components/views/Home.jsx";
 import Modules from "./components/views/Modules.jsx";
@@ -8,15 +9,15 @@ function App() {
   const loggedInUser = "Hunter";
 
   return (
-    <Layout userName={loggedInUser}>
-
-      <Home />
-
-      <Modules />
-
-      <Students />
-
-    </Layout>
+    <BrowserRouter>
+      <Layout userName={loggedInUser}>
+        <Routes> {/* anything in here will be displayed based on the current route */}
+            <Route path = "/" element = {<Home />} />
+            <Route path = "/modules" element = {<Modules />} />
+            <Route path = "/students" element = {<Students />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   )
 }
 
