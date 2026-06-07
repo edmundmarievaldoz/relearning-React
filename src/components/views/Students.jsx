@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './Students.scss';
 import {CardContainer, Card} from "../UI/Card.jsx";
 
@@ -163,13 +164,15 @@ const newStudent = {
       UserYearName: '2022-23',
     };
 //state
+
+const [length, setLength] = useState(studentList.length); //just a variable that keeps track of something if it has updated
+
 //handlers
 const handleAdd = (student) => {
   student.UserID = Math.floor(10000 * Math.random());
   studentList.push(student); {/* the student here is referring to newStudent, see the button below why */}
   console.log(`Length of the student list:  ${studentList.length}`);
-
-
+  setLength(studentList.length); {/* stduentList coz new student got pushed in the list */}
 };
 
 //views
