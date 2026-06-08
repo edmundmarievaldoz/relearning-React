@@ -166,12 +166,20 @@ const newStudent = {
     };
 
 const myGroupID = 13;
-const apiURL = "https://softwarehub/unibase/api";
+const apiURL = 'https://softwarehub.uk/unibase/api';
 const myGroupEndpoint =`${apiURL}/users/groups/${myGroupID}`;
 
 //state
 
 const [students, setStudents] = useState(null); //just a variable that keeps track of something if it has updated
+
+const apiGet = async (endpoint) => { //get function created to fetch data from api will be reuse later
+  const response = await fetch(endpoint); //endpoint is a parameter name
+  const result = await response.json();
+  setStudents(result);
+};
+
+apiGet(myGroupEndpoint); //will fetch myGroupEndpoint variable 
 
 //handlers
 const handleAdd = (student) => {
