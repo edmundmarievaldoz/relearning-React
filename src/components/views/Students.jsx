@@ -182,8 +182,9 @@ const handleAdd = (student) => {
 
         {
           !students
-          ? <p>Loading Records...</p>
-          : (
+          ?(
+          <p>Loading Records...</p>
+          ) : (
           <>
         <CardContainer> {/* was previously div with classname CardContainer, but was changed to CardContainer to use the styling from the CardContainer component, and to wrap the student cards in the container*/}
           {
