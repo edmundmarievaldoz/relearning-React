@@ -10,7 +10,7 @@ const [columns, setColumns] = useState({
         name: "To Do",
         items:[
             { id:"1", content: "React Research" },
-            { id:"2", contnent: "Write Basic Code" },
+            { id:"2", content: "Write Basic Code" },
         ],
     },
 
