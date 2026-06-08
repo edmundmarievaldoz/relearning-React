@@ -1,16 +1,172 @@
-div.search{
+// 1. Variables for a clean, modern look
+$primary-color: #581c24;      // Matching your header maroon
+$background-light: #f7f5f0;  // Cream backdrop
+$card-bg: #ffffff;
+$text-dark: #333333;
+$text-muted: #777777;
+$border-radius: 8px;
+$transition: all 0.2s ease-in-out;
+
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    color: blacks;
+    margin-bottom: 25px;
+  }
+
+  // 2. Styled Form Bar
+  .search {
     display: flex;
-    gap: 40px;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    width: 100%;
 
-}
+    input.task, select, button {
+      padding: 10px 16px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: $border-radius;
+      outline: none;
+      transition: $transition;
+    }
 
-div.column{
+    input.task {
+      flex: 1;
+      max-width: 300px;
+      
+      &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+      }
+    }
+
+    select {
+      background-color: white;
+      cursor: pointer;
+      
+      &:focus {
+        border-color: $primary-color;
+      }
+    }
+
+    button {
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        background-color: lighten($primary-color, 8%);
+        transform: translateY(-1px);
+      }
+      
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // 3. Columns Layout (The Kanban Board Grid)
+  .column {
     display: flex;
     gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 20px;
 
-}
+    // This targets each column wrapper block inside your mapping loop
+    & > div {
+      flex: 1;
+      min-width: 250px; // Stops columns from squeezing too thin
+    }
 
-div.head{
-    display: flex;
-    gap: 5px;
-}
+    // Header inside each column (e.g., "To Do 2")
+    .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+
+      span {
+        background-color: rgba($primary-color, 0.1);
+        color: $primary-color;
+        padding: 2px 8px;
+        border-radius: 20px;
+        font-size: 12px;
+      }
+    }
+
+    // Empty state dropzone helper text
+    .column-empty-text {
+      text-align: center;
+      color: $text-muted;
+      font-style: italic;
+      padding: 20px;
+      border: 2px dashed #ddd;
+      border-radius: $border-radius;
+    }
+
+    // 4. Individual Task Cards
+    .task-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: $card-bg;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+      cursor: grab;
+      transition: $transition;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      &:active {
+        cursor: grabbing;
+      }
+
+      span {
+        font-size: 14px;
+        color: $text-dark;
+        word-break: break-word;
+      }
+
+      // The 'x' delete button
+      button {
+        background: transparent;
+        border: none;
+        color: #bbb;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 4px;
+        line-height: 1;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: $transition;
+
+        &:hover {
+          color: #dc2626; // Smooth red hover transition
+          background-color: #fee2e2;
+        }
+      }
+    }
+  }
