@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {CardContainer, Card} from "../UI/Card.jsx";
 import './Home.scss';
 
 function Home () {
@@ -88,16 +89,19 @@ const handleDrop = (e, columnId) => {
     setDraggedItem(null);
 }
 
+//views
 
     return (
         <>
         <div>
             <h1>Home</h1>
+
             <h2>Kanban Board</h2>
         </div>
 
-        <div>
-            <input type="text" value={newTask}
+        <CardContainer>
+        <div className="search">
+            <input className='task' type="text" value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
             placeholder='Add a New Task...' 
             onKeyDown={(e) => e.key === "Enter" && addNewTask()}
@@ -116,18 +120,21 @@ const handleDrop = (e, columnId) => {
 
             <button onClick={addNewTask}>Add</button>
         </div>
+        </CardContainer>
 
-        <div>
+        <CardContainer>
+        <div className='column'>
             {Object.keys(columns).map((columnId) => (
                 <div key={columnId}
                 onDragOver={(e) => handleDragOver(e, columnId)}
                 onDrop={(e) => handleDrop(e, columnId)}>
 
-                    <div>
-                        {columns[columnId].name}
+                    <Card>
+                    <div className="head">
+                        { columns[columnId].name }
                         <span>{columns[columnId].items.length}</span>
                     </div>
-
+                    
                     <div>
                         {columns[columnId].items.length === 0 ? (
                             <div>Drop task here</div>
@@ -143,9 +150,11 @@ const handleDrop = (e, columnId) => {
                            ))
                         )}
                     </div>
+                    </Card>
                 </div>
             ))}
         </div>
+        </CardContainer>
         </>
     
     );
