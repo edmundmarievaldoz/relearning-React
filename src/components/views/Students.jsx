@@ -165,7 +165,7 @@ const newStudent = {
     };
 //state
 
-const [students, setStudents] = useState(studentList); //just a variable that keeps track of something if it has updated
+const [students, setStudents] = useState(null); //just a variable that keeps track of something if it has updated
 
 //handlers
 const handleAdd = (student) => {
@@ -179,6 +179,12 @@ const handleAdd = (student) => {
     return (
         <>
         <h1>Student List</h1>
+
+        {
+          !students
+          ? <p>Loading Records...</p>
+          : (
+          <>
         <CardContainer> {/* was previously div with classname CardContainer, but was changed to CardContainer to use the styling from the CardContainer component, and to wrap the student cards in the container*/}
           {
             students.map((student) => {
@@ -197,6 +203,9 @@ const handleAdd = (student) => {
           }
         </CardContainer>
         <button onClick={() => handleAdd(newStudent)}>Add a New Student</button>
+        </>
+      )
+    }
         </>
     );
 }
