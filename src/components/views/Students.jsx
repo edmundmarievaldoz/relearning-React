@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import './Students.scss';
-import {CardContainer, Card} from "../UI/Card.jsx";
+import {CardContainer} from "../UI/Card.jsx";
+import UserCard from '../entity/user/UserCard.jsx';
 
 function Students() {
 // hardcoded student list, which will be replaced with data from the database in the future
@@ -66,15 +66,8 @@ useEffect(() => {
           {
             students.map((student) => {
               return(
-                <div className="studentCard" key={student.UserID}>
+                <UserCard className="studentCard" key={student.UserID} user={student}/>
 
-                  <Card> {/*was previously a div with classname Card, but was changed to Card to use the styling from the Card component*/}
-                    <p>{student.UserEmail.substring(0,8)}</p>
-                    <p>{`${student.UserFirstname} ${student.UserLastname}`}</p>
-                    <img src={student.UserImageURL}/>
-                  </Card>
-
-                </div>
               )
             }) //backticks were used to concatenate the first name and last name together, and the substring was used to only show the first 8 characters of the email address
           }
