@@ -149,6 +149,7 @@ function Students() {
 // hardcoded student list, which will be replaced with data from the database in the future
 
 //initialisation (an obj with new details of a new object like student)
+
 const newStudent = {
       UserID: 275,
       UserFirstname: 'Sholeh',
@@ -163,6 +164,11 @@ const newStudent = {
       UserUsertypeName: 'Student',
       UserYearName: '2022-23',
     };
+
+const myGroupID = 13;
+const apiURL = "https://softwarehub/unibase/api";
+const myGroupEndpoint =`${apiURL}/users/groups/${myGroupID}`;
+
 //state
 
 const [students, setStudents] = useState(null); //just a variable that keeps track of something if it has updated
