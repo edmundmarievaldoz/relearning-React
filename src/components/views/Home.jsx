@@ -29,24 +29,24 @@ const [columns, setColumns] = useState({
             { id:"4", content: "Create Repository" },
         ],
     }
-});
+});//state variables, these are objects containing properties [id and content]
 
-const [newTask, setNewTask] = useState("");
-const [activeColumns, setActiveColumns] = useState("todo");
-const [draggedItem, setDraggedItem] = useState(null);
+const [newTask, setNewTask] = useState(""); //for keeping track of the new task to be created
+const [activeColumns, setActiveColumns] = useState("todo"); //we use this to keep track of which box our new created task is gon be
+const [draggedItem, setDraggedItem] = useState(null); //keeps track of which task is currently being dragged over
 
 const addNewTask = () => {
-    if(newTask.trim() === "") return;
+    if(newTask.trim() === "") return; //if input empty nothing will be returned
 
-    const updatedColumns = {...columns};
+    const updatedColumns = {...columns}; //our array
 
     updatedColumns[activeColumns].items.push({
         id: Date.now().toString(),
         content: newTask,
-    });
+    });//pushed newly created task to our array
 
-    setColumns(updatedColumns);
-    setNewTask("");
+    setColumns(updatedColumns);//update state
+    setNewTask("");//clear input after state updated
 };
 
 const removeTask = (columnId, taskId) => {
@@ -54,9 +54,9 @@ const removeTask = (columnId, taskId) => {
     const updatedColumns = {...columns};
 
     updatedColumns[columnId].items = updatedColumns[columnId].items.
-    filter((item) => item.id !== taskId)
+    filter((item) => item.id !== taskId) //deletes id with the matching (which is the selected item)
 
-    setColumns(updatedColumns);
+    setColumns(updatedColumns);//update state
 
 };
 
@@ -64,11 +64,11 @@ const removeTask = (columnId, taskId) => {
 
 const handleDragStart = (columnId, item) => {
     setDraggedItem({columnId, item})
-}
+}//keeps track of the item currently being dragged
 
 const handleDragOver = (e) => {
     e.preventDefault();
-}
+}//html elements does not allow DnD, we use this to allow it
 
 const handleDrop = (e, columnId) => {
     e.preventDefault();

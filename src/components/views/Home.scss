@@ -1,13 +1,3 @@
-// 1. Variables for a clean, modern look
-$primary-color: #581c24;      // Matching your header maroon
-$background-light: #f7f5f0;  // Cream backdrop
-$card-bg: #ffffff;
-$text-dark: #333333;
-$text-muted: #777777;
-$border-radius: 8px;
-$transition: all 0.2s ease-in-out;
-
-
   h1 {
     font-size: 2rem;
     margin-bottom: 5px;
@@ -32,9 +22,9 @@ $transition: all 0.2s ease-in-out;
       padding: 10px 16px;
       font-size: 14px;
       border: 1px solid #ddd;
-      border-radius: $border-radius;
+      border-radius: 10px;
       outline: none;
-      transition: $transition;
+      transition: all 0.2s ease-in-out;
     }
 
     input.task {
@@ -42,8 +32,8 @@ $transition: all 0.2s ease-in-out;
       max-width: 300px;
       
       &:focus {
-        border-color: $primary-color;
-        box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+        border-color: #581c24;
+        box-shadow: 0 0 0 2px rgba(#581c24, 0.1);
       }
     }
 
@@ -52,19 +42,19 @@ $transition: all 0.2s ease-in-out;
       cursor: pointer;
       
       &:focus {
-        border-color: $primary-color;
+        border-color: #581c24;
       }
     }
 
     button {
-      background-color: $primary-color;
+      background-color: #581c24;
       color: white;
       border: none;
       font-weight: 600;
       cursor: pointer;
 
       &:hover {
-        background-color: lighten($primary-color, 8%);
+        background-color: #581c24;
         transform: translateY(-1px);
       }
       
@@ -101,8 +91,8 @@ $transition: all 0.2s ease-in-out;
       margin-bottom: 15px;
 
       span {
-        background-color: rgba($primary-color, 0.1);
-        color: $primary-color;
+        background-color: rgba(#581c24, 0.1);
+        color: #581c24;
         padding: 2px 8px;
         border-radius: 20px;
         font-size: 12px;
@@ -112,11 +102,11 @@ $transition: all 0.2s ease-in-out;
     // Empty state dropzone helper text
     .column-empty-text {
       text-align: center;
-      color: $text-muted;
+      color: lightgray;
       font-style: italic;
       padding: 20px;
       border: 2px dashed #ddd;
-      border-radius: $border-radius;
+      border-radius: 8px;
     }
 
     // 4. Individual Task Cards
@@ -124,14 +114,14 @@ $transition: all 0.2s ease-in-out;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: $card-bg;
+      background: white;
       padding: 12px 16px;
       margin-bottom: 10px;
       border-radius: 6px;
       border: 1px solid #e2e8f0;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
       cursor: grab;
-      transition: $transition;
+      transition: all 0.2s ease-in-out;
 
       &:hover {
         transform: translateY(-2px);
@@ -144,7 +134,7 @@ $transition: all 0.2s ease-in-out;
 
       span {
         font-size: 14px;
-        color: $text-dark;
+        color: #333333;
         word-break: break-word;
       }
 
@@ -161,7 +151,7 @@ $transition: all 0.2s ease-in-out;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: $transition;
+        transition: all 0.2s ease-in-out;
 
         &:hover {
           color: #dc2626; // Smooth red hover transition
