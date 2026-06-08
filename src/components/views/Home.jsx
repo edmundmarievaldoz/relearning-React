@@ -1,23 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {CardContainer, Card} from "../UI/Card.jsx";
 import './Home.scss';
 
 function Home () {
 //state
 
-const [columns, setColumns] = useState({
+const savedData = localStorage.getItem("taskBoxes")
+const initialColumns = savedData ? JSON.parse(savedData) : { //the initial state our columns/boxes
     todo:{
         name: "To Do",
         items:[
-            { id:"1", content: "React Research" },
-            { id:"2", content: "Write Basic Code" },
+            { id:"1", content: "Learn React" },
         ],
     },
 
     inProgress:{
          name: "In Progress",
         items:[
-            { id:"3", content: "Design UI" },
+            { id:"2", content: "UX Design" },
         ],
 
     },
@@ -26,14 +26,18 @@ const [columns, setColumns] = useState({
 
         name: "Done",
         items:[
-            { id:"4", content: "Create Repository" },
+            { id:"3", content: "Build Repo" },
         ],
     }
-});//state variables, these are objects containing properties [id and content]
-
+};//state variables, these are objects containing properties [id and content]
+const [columns, setColumns] = useState(initialColumns)
 const [newTask, setNewTask] = useState(""); //for keeping track of the new task to be created
 const [activeColumns, setActiveColumns] = useState("todo"); //we use this to keep track of which box our new created task is gon be
 const [draggedItem, setDraggedItem] = useState(null); //keeps track of which task is currently being dragged over
+
+useEffect(() => {
+    localStorage.setItem("taskBoxes", JSON.stringify(columns));
+}, [columns])
 
 const addNewTask = () => {
     if(newTask.trim() === "") return; //if input empty nothing will be returned
@@ -75,19 +79,20 @@ const handleDrop = (e, columnId) => {
     
     if(!draggedItem) return;
 
-    const {columnId: sourceColumnId, item} = draggedItem;
+    const {columnId: sourceColumnId, item} = draggedItem; //extract info of dragged item
 
     if(sourceColumnId === columnId) return;
 
-    const updatedColumns = {...columns}
+    const updatedColumns = {...columns} //copy of our array
 
     updatedColumns[sourceColumnId].items = updatedColumns[sourceColumnId].items.filter((i) => i.id != item.id);
+    //access source column id and its items, and set it equal to the filtered version 
 
-    updatedColumns[columnId].items.push(item);
+    updatedColumns[columnId].items.push(item); //helps item to be pushed in the targetted box {todo, inprogress or done}
 
     setColumns(updatedColumns);
     setDraggedItem(null);
-}
+}//this function will handle the dropping of task in a box
 
 //views
 
