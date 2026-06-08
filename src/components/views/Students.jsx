@@ -44,12 +44,12 @@ useEffect(() => {
 //apiGet(myGroupEndpoint); //will fetch myGroupEndpoint variable
 
 //handlers
-const handleAdd = (student) => {
-  student.UserID = Math.floor(10000 * Math.random());
-  setStudents([...students, newStudent]); //the new array is form from the contents of the old array
-  // and tagged on the end of it are the new student
-  console.log(`Length of the students:  ${studentList.length}`);
-};
+  function handleAdd(student) {
+    student.UserID = Math.floor(10000 * Math.random());
+    setStudents([...students, newStudent]); //the new array is form from the contents of the old array
+
+    // and tagged on the end of it are the new student
+  }
 
 //views
     return (
