@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Students.scss';
 import {CardContainer, Card} from "../UI/Card.jsx";
 
@@ -179,7 +179,12 @@ const apiGet = async (endpoint) => { //get function created to fetch data from a
   setStudents(result);
 };
 
-apiGet(myGroupEndpoint); //will fetch myGroupEndpoint variable 
+//useEffect is used to stop infinite loop in fetching api
+useEffect(() => {  
+  apiGet(myGroupEndpoint);
+}, [myGroupEndpoint]);
+
+//apiGet(myGroupEndpoint); //will fetch myGroupEndpoint variable
 
 //handlers
 const handleAdd = (student) => {
