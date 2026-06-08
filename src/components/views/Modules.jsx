@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { CardContainer, Card } from "../UI/Card.jsx";
-import './Modules.scss';
+import { CardContainer } from "../UI/Card.jsx";
+import ModuleCard from "../entity/module/ModuleCard.jsx";
 
 function Modules () {
 
@@ -40,13 +40,7 @@ function Modules () {
                 {
                 modules.map((module) => {
                     return(
-                    <div className="moduleCard" key={module.ModuleID}>
-                        <Card>
-                        <p>{module.ModuleCode}</p>
-                        <p>{module.ModuleName}</p>
-                        <img src={module.ModuleImageURL}/>
-                        </Card>
-                    </div>
+                    <ModuleCard  key={module.ModuleID} module={module}/>
                     )
                 }) //map will go through the array content one by one
                 }
