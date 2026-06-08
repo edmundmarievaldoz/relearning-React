@@ -38,12 +38,8 @@ function Modules () {
           ):(
             <CardContainer>
                 {
-                modules.map((module) => {
-                    return(
-                    <ModuleCard  key={module.ModuleID} module={module}/>
-                    )
-                }) //map will go through the array content one by one
-                }
+                modules.map((module) => <ModuleCard  key={module.ModuleID} module={module}/>)} {/*map will go through the array content one by one */}
+                
             </CardContainer>
         )
       }
