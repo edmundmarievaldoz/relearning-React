@@ -15,6 +15,7 @@ function Modules () {
   //state
 
   const [modules, setModules] = useState(null);
+  const [showForm, setShowForm] = useState(false); //form is closed as thid id the state
 
   const apiGet = async (endpoint) => {
     const response = await fetch(endpoint);
@@ -33,11 +34,14 @@ function Modules () {
         <>
         <h1>Module List</h1>
 
-        <Action.Tray>
-          <Action.Add showText buttonText='Add New Module' /> {/*TBC bc girlfriend told me to get off my laptop and get a life :P */}
-        </Action.Tray>
+        { !showForm ? (
+            <Action.Tray>
+              <Action.Add showText buttonText='Add New Module' /> {/*TBC bc girlfriend told me to get off my laptop and get a life :P */}
+            </Action.Tray>
+          ) : (
 
-        <ModuleForm />
+            <ModuleForm />
+          )}
 
         {
           !modules ? (
