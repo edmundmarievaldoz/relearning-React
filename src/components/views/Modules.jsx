@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Spacer from "../UI/Spacer.jsx";
 import Action from "../UI/Actions.jsx";
 import ModuleForm from "../entity/module/ModuleForm.jsx";
 import { CardContainer } from "../UI/Card.jsx";
@@ -37,7 +38,8 @@ function Modules () {
         <>
         <h1>Module List</h1>
 
-        { !showForm ? (
+        <Spacer>
+            { !showForm ? (
             <Action.Tray>
               <Action.Add showText buttonText='Add New Module' onClick={handleAdd}/> {/*TBC bc girlfriend told me to get off my laptop and get a life :P */}
             </Action.Tray>
@@ -59,6 +61,7 @@ function Modules () {
             </CardContainer>
         )
       }
+        </Spacer>
         </>
 
     );
