@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import Spacer from '../UI/Spacer.jsx';
+import Action from '../UI/Actions.jsx';
+import UserForm from '../entity/user/UserForm.jsx';
 import {CardContainer} from "../UI/Card.jsx";
 import UserCard from '../entity/user/UserCard.jsx';
 
@@ -7,20 +10,6 @@ function Students() {
 
 //initialisation (an obj with new details of a new object like student)
 
-const newStudent = {
-      UserID: 275,
-      UserFirstname: 'Sholeh',
-      UserLastname: 'ABBAS',
-      UserEmail: 'K2955214@kingston.ac.uk',
-      UserRegistered: 0,
-      UserLevel: 4,
-      UserYearID: 1,
-      UserUsertypeID: 2,
-      UserImageURL:
-        'https://images.generated.photos/evdpMs0ZUOoMA0ACfCy98zzmy347YQxRmrPCWHp3v0g/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MzUzMTEyLmpwZw.jpg',
-      UserUsertypeName: 'Student',
-      UserYearName: '2022-23',
-    };
 
 const myGroupID = 13;
 const apiURL = 'https://softwarehub.uk/unibase/api';
@@ -29,6 +18,7 @@ const myGroupEndpoint =`${apiURL}/users/groups/${myGroupID}`;
 //state
 
 const [students, setStudents] = useState(null); //just a variable that keeps track of something if it has updated
+const [showForm, setShowForm] = useState(false);
 
 const apiGet = async (endpoint) => { //get function created to fetch data from api will be reuse later
   const response = await fetch(endpoint); //endpoint is a parameter name
@@ -44,32 +34,40 @@ useEffect(() => {
 //apiGet(myGroupEndpoint); //will fetch myGroupEndpoint variable
 
 //handlers
-  function handleAdd(student) {
-    student.UserID = Math.floor(10000 * Math.random());
-    setStudents([...students, newStudent]); //the new array is form from the contents of the old array
-
-    // and tagged on the end of it are the new student
-  }
-
+const handleAdd = () => {setShowForm(true)};
+const handleCancel = () => {setShowForm(false)};
 //views
     return (
         <>
-        <h1>Student List</h1>
+            <h1>Student List</h1>
 
-        {
-          !students
-          ?(
-          <p>Loading Records...</p>
-          ) : (
-          <>
-        <CardContainer> {/* was previously div with classname CardContainer, but was changed to CardContainer to use the styling from the CardContainer component, and to wrap the student cards in the container*/}
-          {
-            students.map((student) => <UserCard className="studentCard" key={student.UserID} user={student}/> )}
-            {/*backticks were used to concatenate the first name and last name together, and the substring was used to only show the first 8 characters of the email address*/}
-        </CardContainer>
-        </>
-      )
-    }
+            <Spacer>
+                { !showForm ? (
+
+                <Action.Tray>
+                  <Action.Add showText buttonText='Add a Student' onClick={handleAdd}/>
+                </Action.Tray>
+                ) : (
+
+                <UserForm onCancel={handleCancel} />
+
+                )}
+
+                {
+                  !students
+                  ?(
+                  <p>Loading Records...</p>
+                  ) : (
+                  <>
+                <CardContainer> {/* was previously div with classname CardContainer, but was changed to CardContainer to use the styling from the CardContainer component, and to wrap the student cards in the container*/}
+                  {
+                    students.map((student) => <UserCard className="studentCard" key={student.UserID} user={student}/> )}
+                    {/*backticks were used to concatenate the first name and last name together, and the substring was used to only show the first 8 characters of the email address*/}
+                </CardContainer>
+                </>
+          )
+        }
+          </Spacer>
         </>
     );
 }
