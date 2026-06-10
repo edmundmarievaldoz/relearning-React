@@ -1,7 +1,7 @@
 import Action from '../../UI/Actions';
 import './ModuleForm.scss';
 
-function ModuleForm () {
+function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx file
     //initialisation...
     //state...
     //handlers...
@@ -10,7 +10,7 @@ function ModuleForm () {
         <div className='moduleForm'>
             <p>This is the Form</p>
             <Action.Tray>
-                
+                <Action.Cancel showText buttonText='Cancel' onClick={onCancel} /> {/*we call it here */}
             </Action.Tray>
 
         </div>

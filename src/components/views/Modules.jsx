@@ -28,6 +28,9 @@ function Modules () {
   }, [myModulesEndpoint]);
 
   //handler
+  const handleAdd = () => {setShowForm(true)};
+  const handleCancel = () => {setShowForm(false)};
+
 
   //views
     return (
@@ -36,11 +39,11 @@ function Modules () {
 
         { !showForm ? (
             <Action.Tray>
-              <Action.Add showText buttonText='Add New Module' /> {/*TBC bc girlfriend told me to get off my laptop and get a life :P */}
+              <Action.Add showText buttonText='Add New Module' onClick={handleAdd}/> {/*TBC bc girlfriend told me to get off my laptop and get a life :P */}
             </Action.Tray>
           ) : (
 
-            <ModuleForm />
+            <ModuleForm onCancel={handleCancel}/>
           )}
 
         {
