@@ -67,7 +67,6 @@ useEffect(() => {
             students.map((student) => <UserCard className="studentCard" key={student.UserID} user={student}/> )}
             {/*backticks were used to concatenate the first name and last name together, and the substring was used to only show the first 8 characters of the email address*/}
         </CardContainer>
-        <button onClick={() => handleAdd(newStudent)}>Add a New Student</button>
         </>
       )
     }

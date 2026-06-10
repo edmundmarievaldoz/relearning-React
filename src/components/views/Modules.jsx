@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import Action from "../UI/Actions.jsx";
+import ModuleForm from "../entity/module/ModuleForm.jsx";
 import { CardContainer } from "../UI/Card.jsx";
 import ModuleCard from "../entity/module/ModuleCard.jsx";
 
@@ -30,6 +32,13 @@ function Modules () {
     return (
         <>
         <h1>Module List</h1>
+
+        <Action.Tray>
+          <Action.Add showText buttonText='Add New Module' /> {/*TBC bc girlfriend told me to get off my laptop and get a life :P */}
+        </Action.Tray>
+
+        <ModuleForm />
+
         {
           !modules ? (
           
