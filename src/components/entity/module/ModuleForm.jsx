@@ -5,9 +5,9 @@ import './ModuleForm.scss';
 
 
 const initialModule = {
-    ModuleName: 'Deleteable Module',
-    ModuleCode: 'XYZ',
-    ModuleLevel: 3,
+    ModuleName: '',
+    ModuleCode: '',
+    ModuleLevel: 0,
     ModuleYearID: null,
     ModuleLeaderID: null,
     ModuleImageURL: 
@@ -29,9 +29,7 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
         setModule({...module, [name]: value});
     };
 
-    const handleSubmit = () => {
-        
-    };
+    const handleSubmit = () => alert(JSON.stringify(module)); //helps turn js to string
 
     //the event value will tell us what field and what is the new value
 
