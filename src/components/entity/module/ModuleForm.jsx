@@ -5,9 +5,9 @@ import './ModuleForm.scss';
 
 
 const initialModule = {
-    ModuleName: '',
-    ModuleCode: '',
-    ModuleLevel: 0,
+    ModuleName: null,
+    ModuleCode: null,
+    ModuleLevel: null,
     ModuleYearID: null,
     ModuleLeaderID: null,
     ModuleImageURL: 
@@ -18,6 +18,26 @@ const initialModule = {
 function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx file
     //initialisation...
 
+    const conformance = {
+    js2html: {
+        ModuleName: (value) => (value === null) ? '' : value,
+        ModuleCode: (value) => (value === null) ? '' : value,
+        ModuleLevel: (value) => (value === null) ? '0' : value,
+        ModuleYearID: (value) => (value === null) ? '0' : value,
+        ModuleLeaderID: (value) => (value === null) ? '0' : value,
+        ModuleImageURL: (value) => (value === null) ? '' : value,
+    }, //an object that converts our state variables to string that we can use in the form
+
+    html2js: {
+        ModuleName: (value) => (value === '' ? null : value),
+        ModuleCode: (value) => (value === '' ? null : value),
+        ModuleLevel: (value) => (value === '0') ? null : parseInt(value),
+        ModuleYearID: (value) => (value === '0') ? null : parseInt(value),
+        ModuleLeaderID: (value) => (value === '0') ? null : parseInt(value),
+        ModuleImageURL: (value) => (value === '' ? null : value),
+    },
+}; //contains two objects that goes from js to html and vice versa
+
     //state...
 
     const [module, setModule] = useState (initialModule);
@@ -26,7 +46,7 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
 
     const handleChange = (event) => {
         const {name, value} = event.target;
-        setModule({...module, [name]: value});
+        setModule({...module, [name]: conformance.html2js[name](value)});
     };
 
     const handleSubmit = () => alert(JSON.stringify(module)); //helps turn js to string
@@ -34,6 +54,9 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
     //the event value will tell us what field and what is the new value
 
     //view...
+
+    
+
     return (
         <div className='moduleForm'>
             <Spacer>
@@ -41,17 +64,17 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
 
                 <label>
                     Module Name:
-                    <input type='text' name='ModuleName' value={module.ModuleName} onChange={handleChange}/>
+                    <input type='text' name='ModuleName' value={conformance.js2html.ModuleName(module.ModuleName)} onChange={handleChange}/>
                 </label>
 
                 <label>
                     Module Code:
-                    <input type='text' name='ModuleCode' value={module.ModuleCode} onChange={handleChange}/>
+                    <input type='text' name='ModuleCode' value={conformance.js2html.ModuleCode(module.ModuleCode)} onChange={handleChange}/>
                 </label>
 
                 <label>
                     Module Level:
-                    <select name='ModuleLevel' value={module.ModuleLevel} onChange={handleChange}>
+                    <select name='ModuleLevel' value={conformance.js2html.ModuleLevel(module.ModuleLevel)} onChange={handleChange}>
                         <option value={0} hidden>No Level Selected</option>
                         {
                             [3,4,5,6,7].map( (level) => 
@@ -65,19 +88,19 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
                 
                 <label>
                     Module Year:
-                    <input type='text' name='ModuleYear' value={module.ModuleYearID} onChange={handleChange}/> {/*onChange signals form that users are making changes */}
+                    <input type='text' name='ModuleYearID' value={conformance.js2html.ModuleYearID(module.ModuleYearID)} onChange={handleChange}/> {/*onChange signals form that users are making changes */}
                 </label>
 
                 
                 <label>
                     Module Leader:
-                    <input type='text' name='ModuleLeader' value={module.ModuleLeaderID} onChange={handleChange}/>
+                    <input type='text' name='ModuleLeaderID' value={conformance.js2html.ModuleLeaderID(module.ModuleLeaderID)} onChange={handleChange}/>
                 </label>
 
                 
                 <label>
                     Module Image:
-                    <input type='text' name='ModuleImageURL' value={module.ModuleImageURL} onChange={handleChange}/>
+                    <input type='text' name='ModuleImageURL' value={conformance.js2html.ModuleImageURL(module.ModuleImageURL)} onChange={handleChange}/>
                 </label>
 
 
