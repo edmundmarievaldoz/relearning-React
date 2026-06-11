@@ -17,9 +17,24 @@ const initialModule = {
 
 function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx file
     //initialisation...
+
     //state...
+
     const [module, setModule] = useState (initialModule);
+
     //handlers...
+
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+        setModule({...module, [name]: value});
+    };
+
+    const handleSubmit = () => {
+        
+    };
+
+    //the event value will tell us what field and what is the new value
+
     //view...
     return (
         <div className='moduleForm'>
@@ -28,17 +43,17 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
 
                 <label>
                     Module Name:
-                    <input type='text' name='ModuleName' value={module.ModuleName}/>
+                    <input type='text' name='ModuleName' value={module.ModuleName} onChange={handleChange}/>
                 </label>
 
                 <label>
                     Module Code:
-                    <input type='text' name='ModuleCode' value={module.ModuleCode} />
+                    <input type='text' name='ModuleCode' value={module.ModuleCode} onChange={handleChange}/>
                 </label>
 
                 <label>
                     Module Level:
-                    <select name='ModuleLevel' value={module.ModuleLevel}>
+                    <select name='ModuleLevel' value={module.ModuleLevel} onChange={handleChange}>
                         <option value={0} hidden>No Level Selected</option>
                         {
                             [3,4,5,6,7].map( (level) => 
@@ -52,25 +67,26 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
                 
                 <label>
                     Module Year:
-                    <input type='text' name='ModuleYear' value={module.ModuleYearID} />
+                    <input type='text' name='ModuleYear' value={module.ModuleYearID} onChange={handleChange}/> {/*onChange signals form that users are making changes */}
                 </label>
 
                 
                 <label>
                     Module Leader:
-                    <input type='text' name='ModuleLeader' value={module.ModuleLeaderID} />
+                    <input type='text' name='ModuleLeader' value={module.ModuleLeaderID} onChange={handleChange}/>
                 </label>
 
                 
                 <label>
                     Module Image:
-                    <input type='text' name='ModuleImageURL' value={module.ModuleImageURL} />
+                    <input type='text' name='ModuleImageURL' value={module.ModuleImageURL} onChange={handleChange}/>
                 </label>
 
 
             </div>
 
             <Action.Tray>
+                <Action.Submit showText onClick={handleSubmit} />
                 <Action.Cancel showText buttonText='Cancel' onClick={onCancel} /> {/*we call it here */}
             </Action.Tray>
             </Spacer>
