@@ -29,7 +29,7 @@ function Modules () {
     apiGet(myModulesEndpoint);
   }, [myModulesEndpoint]);
 
-    const apiPOST = async (endpoint, record) => {
+    const apiPOST = async (endpoint, record) => { //this is an http post request and it uses fetch
       //build a request object
       const request = {
         method: 'POST', 
@@ -54,8 +54,11 @@ function Modules () {
   const handleCancel = () => {setShowForm(false)};
 
   const handleSubmit = async(module) => {
-    const result = await apiPOST(postModulesEndpoint, module);
-    if(result.isSuccess) alert("Submission Successful");
+    const result = await apiPOST(postModulesEndpoint, module); 
+    if(result.isSuccess) {
+      setShowForm(false); //closes form
+      apiGet(myModulesEndpoint); //reloads the api so the new module added is posted
+    }
     else alert(`Submission Failed: ${result.message}`)
   };
 
