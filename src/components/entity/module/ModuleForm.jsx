@@ -123,7 +123,17 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
                 
                 <label>
                     Module Leader:
-                    <input type='text' name='ModuleLeaderID' value={conformance.js2html.ModuleLeaderID(module.ModuleLeaderID)} onChange={handleChange}/>
+                    { !staff ? (
+                        <p>Loading records...</p>
+                    ) : (
+                        <select name='ModuleLeaderID' value={conformance.js2html.ModuleLeaderID(module.ModuleLeaderID)} onChange={handleChange}>
+                        <option value={0} hidden>No Module Leader Selected</option>
+                        {
+                            staff.map( (user) => 
+                            <option key={user.UserID} value={user.UserID}>{`${user.UserFirstname} ${user.UserLastname}`}</option> )
+                        }
+                    </select>
+                    )}
                 </label>
 
                 
