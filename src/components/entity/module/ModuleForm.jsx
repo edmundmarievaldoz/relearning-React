@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Action from '../../UI/Actions';
 import Spacer from '../../UI/Spacer.jsx';
 import './ModuleForm.scss';
@@ -38,9 +38,24 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
     },
 }; //contains two objects that goes from js to html and vice versa
 
+  const apiURL = 'https://softwarehub.uk/unibase/api';
+  const yearsEndpoint = `${apiURL}/years`;
+  const staffEndpoint = `${apiURL}/users/staff`;
     //state...
 
     const [module, setModule] = useState (initialModule);
+    const [years, setYears] = useState ();
+    const [staff, setStaff] = useState ();
+
+    const apiGet = async (endpoint) => {
+        const response = await fetch(endpoint);
+        const result = await response.json();
+        setYears(result);
+    };
+
+    useEffect(() => {
+    apiGet(yearsEndpoint);
+    }, [yearsEndpoint]);
 
     //handlers...
 
@@ -88,8 +103,18 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
                 
                 <label>
                     Module Year:
-                    <input type='text' name='ModuleYearID' value={conformance.js2html.ModuleYearID(module.ModuleYearID)} onChange={handleChange}/> {/*onChange signals form that users are making changes */}
-                </label>
+                    { !years ? (
+                        <p>Loading records...</p>
+                    ) : (
+                        <select name='ModuleYearID' value={conformance.js2html.ModuleYearID(module.ModuleYearID)} onChange={handleChange}>
+                        <option value={0} hidden>No Year Selected</option>
+                        {
+                            years.map( (year) => 
+                            <option key={year.YearID} value={year.YearID}>{year.YearName}</option> )
+                        }
+                    </select>
+                    )}
+                </label>{/*onChange signals form that users are making changes */}
 
                 
                 <label>
