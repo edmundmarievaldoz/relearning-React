@@ -15,7 +15,7 @@ const initialModule = {
 
 }
 
-function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx file
+function ModuleForm ({onSubmit, onCancel}) { //the onCancel prop lives in the module.jsx file
     //initialisation...
 
     const conformance = {
@@ -68,7 +68,7 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
         setModule({...module, [name]: conformance.html2js[name](value)});
     };
 
-    const handleSubmit = () => alert(JSON.stringify(module)); //helps turn js to string
+    const handleSubmit = () => onSubmit(module); //helps turn js to string
 
     //the event value will tell us what field and what is the new value
 
