@@ -47,15 +47,19 @@ function ModuleForm ({onCancel}) { //the onCancel prop lives in the module.jsx f
     const [years, setYears] = useState ();
     const [staff, setStaff] = useState ();
 
-    const apiGet = async (endpoint) => {
+    const apiGet = async (endpoint, setState) => {
         const response = await fetch(endpoint);
         const result = await response.json();
-        setYears(result);
+        setState(result);//apiGet was generalised so it does not need to be duplicated in the code
     };
 
     useEffect(() => {
-    apiGet(yearsEndpoint);
+    apiGet(yearsEndpoint, setYears);
     }, [yearsEndpoint]);
+
+    useEffect(() => {
+    apiGet(staffEndpoint, setStaff);
+    }, [staffEndpoint]);
 
     //handlers...
 
