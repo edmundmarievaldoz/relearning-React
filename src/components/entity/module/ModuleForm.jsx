@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import apiURL from '../../api/apiURL.js';
+import API from '../../api/API.js';
 import Action from '../../UI/Actions';
 import Spacer from '../../UI/Spacer.jsx';
 import './ModuleForm.scss';
@@ -38,27 +40,38 @@ function ModuleForm ({onSubmit, onCancel}) { //the onCancel prop lives in the mo
     },
 }; //contains two objects that goes from js to html and vice versa
 
-  const apiURL = 'https://softwarehub.uk/unibase/api';
   const yearsEndpoint = `${apiURL}/years`;
   const staffEndpoint = `${apiURL}/users/staff`;
-    //state...
+
+    //state.......................................................
 
     const [module, setModule] = useState (initialModule);
-    const [years, setYears] = useState ();
-    const [staff, setStaff] = useState ();
 
-    const apiGet = async (endpoint, setState) => {
-        const response = await fetch(endpoint);
-        const result = await response.json();
-        setState(result);//apiGet was generalised so it does not need to be duplicated in the code
+    const [years, setYears] = useState ();
+    const [loadingYearsMessage, setLoadingYearsMessage] = useState("Loading Records...")
+
+    const loadingYears = async (endpoint) => {
+        const response = await API.get(endpoint);
+        response.isSuccess ? setYears(response.result) 
+        : setLoadingYearsMessage(`Loading error ${response.message}`);//apiGet was generalised so it does not need to be duplicated in the code
     };
 
     useEffect(() => {
-    apiGet(yearsEndpoint, setYears);
+    loadingYears(yearsEndpoint, setYears);
     }, [yearsEndpoint]);
 
+    const [staff, setStaff] = useState ();
+    const [loadingUserMessage, setLoadingUserMessage] = useState("Loading records...")
+
+    const loadingStaff = async (endpoint) => {
+        const response = await API.get(endpoint);
+        response.isSuccess ? setStaff(response.result) 
+        : setLoadingUserMessage(`Loading error ${response.message}`); //apiGet was generalised so it does not need to be duplicated in the code
+    };
+
+
     useEffect(() => {
-    apiGet(staffEndpoint, setStaff);
+    loadingStaff(staffEndpoint, setStaff);
     }, [staffEndpoint]);
 
     //handlers...
@@ -108,7 +121,7 @@ function ModuleForm ({onSubmit, onCancel}) { //the onCancel prop lives in the mo
                 <label>
                     Module Year:
                     { !years ? (
-                        <p>Loading records...</p>
+                        <p>{loadingYearsMessage}</p>
                     ) : (
                         <select name='ModuleYearID' value={conformance.js2html.ModuleYearID(module.ModuleYearID)} onChange={handleChange}>
                         <option value={0} hidden>No Year Selected</option>
@@ -124,7 +137,7 @@ function ModuleForm ({onSubmit, onCancel}) { //the onCancel prop lives in the mo
                 <label>
                     Module Leader:
                     { !staff ? (
-                        <p>Loading records...</p>
+                        <p>{loadingUserMessage}</p>
                     ) : (
                         <select name='ModuleLeaderID' value={conformance.js2html.ModuleLeaderID(module.ModuleLeaderID)} onChange={handleChange}>
                         <option value={0} hidden>No Module Leader Selected</option>

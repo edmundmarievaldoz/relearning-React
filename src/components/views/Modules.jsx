@@ -15,9 +15,9 @@ function Modules () {
 
 
   //state
-
-  const [modules, setModules] = useState(null);
   const [showForm, setShowForm] = useState(false); //form is closed as thid id the state
+  
+  const [modules, setModules] = useState(null);
   const [loadingMessage, setLoadingMessage] = useState("Loading records...")
 
   const loadModules = async (endpoint) => {
