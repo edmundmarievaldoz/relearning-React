@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import apiURL from "../api/apiURL.js";
+import API from "../api/API.js"
 import Spacer from "../UI/Spacer.jsx";
 import Action from "../UI/Actions.jsx";
 import ModuleForm from "../entity/module/ModuleForm.jsx";
@@ -8,8 +10,6 @@ import ModuleCard from "../entity/module/ModuleCard.jsx";
 function Modules () {
 
   //initialisation
-
-  const apiURL = 'https://softwarehub.uk/unibase/api';
   const myModulesEndpoint = `${apiURL}/modules`;
   const postModulesEndpoint = `${apiURL}/modules`;
 
@@ -18,15 +18,15 @@ function Modules () {
 
   const [modules, setModules] = useState(null);
   const [showForm, setShowForm] = useState(false); //form is closed as thid id the state
+  const [loadingMessage, setLoadingMessage] = useState("Loading records...")
 
-  const apiGet = async (endpoint) => {
-    const response = await fetch(endpoint);
-    const result = await response.json();
-    setModules(result);
+  const loadModules = async (endpoint) => {
+    const response = await API.get(endpoint);
+    response.isSuccess ? setModules(response.result) : setLoadingMessage(response.message); //
   };
 
   useEffect(() => {
-    apiGet(myModulesEndpoint);
+    loadModules(myModulesEndpoint);
   }, [myModulesEndpoint]);
 
     const apiPOST = async (endpoint, record) => { //this is an http post request and it uses fetch
@@ -81,7 +81,7 @@ function Modules () {
         {
           !modules ? (
           
-          <p>Loading records....</p>
+          <p>{loadingMessage}</p>
 
           ):(
             <CardContainer>
