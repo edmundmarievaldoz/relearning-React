@@ -1,6 +1,7 @@
 import './Modal.scss';
+import { useState } from "react";
 
-const Modal = ({title, children}) => {
+export const Modal = ({title, children}) => {
     // initialisation
     //state
     //handler
@@ -22,6 +23,19 @@ const Modal = ({title, children}) => {
         </div>
     );
 
-}
+};
 
-export default Modal;
+export const useModal = (initialState) => {
+    //state...................
+    const [isOpen, setIsOpen] = useState(initialState); //form is closed as thid id the state (moved from module)
+
+    //handler.................
+    const open = () => setIsOpen(true);
+
+    const close = () => setIsOpen(false);
+    //views
+    //return
+
+    return [isOpen, open, close];
+    
+}

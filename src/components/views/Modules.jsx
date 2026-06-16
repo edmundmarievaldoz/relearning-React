@@ -1,8 +1,7 @@
-import { useState } from "react";
 import useLoad from "../api/useLoad.js";
 import apiURL from "../api/apiURL.js";
 import API from "../api/API.js"
-import Modal from "../UI/Modal.jsx";
+import { Modal, useModal } from "../UI/Modal.jsx";
 import Spacer from "../UI/Spacer.jsx";
 import Action from "../UI/Actions.jsx";
 import ModuleForm from "../entity/module/ModuleForm.jsx";
@@ -17,19 +16,17 @@ function Modules () {
 
 
   //state
-  const [showForm, setShowForm] = useState(false); //form is closed as thid id the state
   const [modules, loadingMessage, loadModules] = useLoad(myModulesEndpoint);
+  const [isFormOpen, openForm, closeForm] = useModal(false); //from useModal, form is initially closed hence "false"
+
 
 
   //handler
-  const handleAdd = () => {setShowForm(true)};
-
-  const handleCancel = () => {setShowForm(false)};
 
   const handleSubmit = async(module) => {
     const result = await API.post(postModulesEndpoint, module); 
     if(result.isSuccess) {
-      setShowForm(false); //closes form
+      closeForm(); //calls closeForm function from useModal
       loadModules(myModulesEndpoint); //reloads the api so the new module added is posted
     }
     else alert(`Submission Failed: ${result.message}`)
@@ -41,15 +38,15 @@ function Modules () {
         <>
         <h1>Module List</h1>
         
-        { showForm && (
+        { isFormOpen && (
         <Modal title='Add a New Module'>
-          <ModuleForm onSubmit={handleSubmit} onCancel={handleCancel}/>
+          <ModuleForm onSubmit={handleSubmit} onCancel={closeForm}/> {/**closeForm function use in onCancel button */}
         </Modal>
         )}
 
         <Spacer>
             <Action.Tray>
-              <Action.Add showText buttonText='Add New Module' onClick={handleAdd}/> {/*TBC bc girlfriend told me to get off my laptop and get a life :P */}
+              <Action.Add showText buttonText='Add New Module' onClick={openForm}/> {/*TBC bc girlfriend told me to get off my laptop and get a life :P */}
             </Action.Tray>
 
         {
