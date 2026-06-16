@@ -66,7 +66,7 @@ function ModuleForm ({onSubmit, onCancel}) { //the onCancel prop lives in the mo
     const loadingStaff = async (endpoint) => {
         const response = await API.get(endpoint);
         response.isSuccess ? setStaff(response.result) 
-        : setLoadingUserMessage(`Loading error ${response.message}`); //apiGet was generalised so it does not need to be duplicated in the code
+        : setLoadingUserMessage(`Loading error ${response.message}`); 
     };
 
 
