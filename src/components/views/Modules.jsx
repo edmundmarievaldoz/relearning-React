@@ -40,20 +40,17 @@ function Modules () {
     return (
         <>
         <h1>Module List</h1>
-
-        <Modal title='Modal'>
-          <p>This is a Modal</p>
+        
+        { showForm && (
+        <Modal title='Add a New Module'>
+          <ModuleForm onSubmit={handleSubmit} onCancel={handleCancel}/>
         </Modal>
+        )}
 
         <Spacer>
-            { !showForm ? (
             <Action.Tray>
               <Action.Add showText buttonText='Add New Module' onClick={handleAdd}/> {/*TBC bc girlfriend told me to get off my laptop and get a life :P */}
             </Action.Tray>
-          ) : (
-
-            <ModuleForm onSubmit={handleSubmit} onCancel={handleCancel}/>
-          )}
 
         {
           !modules ? (
