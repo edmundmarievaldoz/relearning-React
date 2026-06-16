@@ -19,14 +19,12 @@ function Modules () {
   const [modules, loadingMessage, loadModules] = useLoad(myModulesEndpoint);
   const [isFormOpen, openForm, closeForm] = useModal(false); //from useModal, form is initially closed hence "false"
 
-
-
   //handler
 
   const handleSubmit = async(module) => {
     const result = await API.post(postModulesEndpoint, module); 
     if(result.isSuccess) {
-      closeForm(); //calls closeForm function from useModal
+      closeForm(); //calls closeForm function from useModal 
       loadModules(myModulesEndpoint); //reloads the api so the new module added is posted
     }
     else alert(`Submission Failed: ${result.message}`)
