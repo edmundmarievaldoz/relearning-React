@@ -2,6 +2,7 @@ import { useState } from "react";
 import useLoad from "../api/useLoad.js";
 import apiURL from "../api/apiURL.js";
 import API from "../api/API.js"
+import Modal from "../UI/Modal.jsx";
 import Spacer from "../UI/Spacer.jsx";
 import Action from "../UI/Actions.jsx";
 import ModuleForm from "../entity/module/ModuleForm.jsx";
@@ -39,6 +40,10 @@ function Modules () {
     return (
         <>
         <h1>Module List</h1>
+
+        <Modal title='Modal'>
+          <p>This is a Modal</p>
+        </Modal>
 
         <Spacer>
             { !showForm ? (

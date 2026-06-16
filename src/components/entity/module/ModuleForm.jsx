@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useLoad from '../../api/useLoad.js';
 import apiURL from '../../api/apiURL.js';
-import API from '../../api/API.js';
 import Action from '../../UI/Actions';
 import Spacer from '../../UI/Spacer.jsx';
 import './ModuleForm.scss';
