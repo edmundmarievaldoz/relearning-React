@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import useLoad from '../../api/useLoad.js';
 import apiURL from '../../api/apiURL.js';
 import API from '../../api/API.js';
 import Action from '../../UI/Actions';
@@ -46,33 +47,8 @@ function ModuleForm ({onSubmit, onCancel}) { //the onCancel prop lives in the mo
     //state.......................................................
 
     const [module, setModule] = useState (initialModule);
-
-    const [years, setYears] = useState ();
-    const [loadingYearsMessage, setLoadingYearsMessage] = useState("Loading Records...")
-
-    const loadingYears = async (endpoint) => {
-        const response = await API.get(endpoint);
-        response.isSuccess ? setYears(response.result) 
-        : setLoadingYearsMessage(`Loading error ${response.message}`);//apiGet was generalised so it does not need to be duplicated in the code
-    };
-
-    useEffect(() => {
-    loadingYears(yearsEndpoint, setYears);
-    }, [yearsEndpoint]);
-
-    const [staff, setStaff] = useState ();
-    const [loadingUserMessage, setLoadingUserMessage] = useState("Loading records...")
-
-    const loadingStaff = async (endpoint) => {
-        const response = await API.get(endpoint);
-        response.isSuccess ? setStaff(response.result) 
-        : setLoadingUserMessage(`Loading error ${response.message}`); 
-    };
-
-
-    useEffect(() => {
-    loadingStaff(staffEndpoint, setStaff);
-    }, [staffEndpoint]);
+    const [years, loadingYearsMessage] = useLoad(yearsEndpoint);
+    const [staff, loadingUserMessage] = useLoad(staffEndpoint);
 
     //handlers...
 
