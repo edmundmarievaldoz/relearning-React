@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import useLoad from "../api/useLoad.js";
 import apiURL from "../api/apiURL.js";
 import API from "../api/API.js"
 import Spacer from "../UI/Spacer.jsx";
@@ -16,18 +17,8 @@ function Modules () {
 
   //state
   const [showForm, setShowForm] = useState(false); //form is closed as thid id the state
-  
-  const [modules, setModules] = useState(null);
-  const [loadingMessage, setLoadingMessage] = useState("Loading records...")
+  const [modules, loadingMessage, loadModules] = useLoad(myModulesEndpoint);
 
-  const loadModules = async (endpoint) => {
-    const response = await API.get(endpoint);
-    response.isSuccess ? setModules(response.result) : setLoadingMessage(response.message); //
-  };
-
-  useEffect(() => {
-    loadModules(myModulesEndpoint);
-  }, [myModulesEndpoint]);
 
   //handler
   const handleAdd = () => {setShowForm(true)};
