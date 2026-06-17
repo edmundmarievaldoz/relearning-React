@@ -2,6 +2,7 @@ import useLoad from "../api/useLoad.js";
 import apiURL from "../api/apiURL.js";
 import API from "../api/API.js"
 import { Modal, useModal } from "../UI/Modal.jsx";
+import { Alert, useAlert, ErrorAlert } from "../UI/Alert.jsx";
 import Spacer from "../UI/Spacer.jsx";
 import Action from "../UI/Actions.jsx";
 import ModuleForm from "../entity/module/ModuleForm.jsx";
@@ -18,6 +19,8 @@ function Modules () {
   //state
   const [modules, loadingMessage, loadModules] = useLoad(myModulesEndpoint);
   const [isFormOpen, openForm, closeForm] = useModal(false); //from useModal, form is initially closed hence "false"
+  const [isAlertOpen, alertMessage, openAlert, closeAlert] = useAlert(); //from useModal, form is initially closed hence "false"
+  const [isErrorOpen, ErrorMessage, openError, closeError] = useAlert(); //from useModal, form is initially closed hence "false"
 
   //handler
 
@@ -26,8 +29,9 @@ function Modules () {
     if(result.isSuccess) {
       closeForm(); //calls closeForm function from useModal 
       loadModules(myModulesEndpoint); //reloads the api so the new module added is posted
+      openAlert('Module Submitted Successfully')
     }
-    else alert(`Submission Failed: ${result.message}`)
+    else openError(`Submission Failed: ${result.message}`)
   };
 
 
@@ -41,6 +45,9 @@ function Modules () {
           <ModuleForm onSubmit={handleSubmit} onCancel={closeForm}/> {/**closeForm function use in onCancel button */}
         </Modal>
         )}
+
+        {isAlertOpen && <Alert message={alertMessage} onDismiss={closeAlert} />}
+        {isErrorOpen && <ErrorAlert message={ErrorMessage} onDismiss={closeError} />}
 
         <Spacer>
             <Action.Tray>
