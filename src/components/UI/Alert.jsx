@@ -38,6 +38,29 @@ export const ErrorAlert = ({message, onDismiss}) => {
     );
 }
 
+export const ConfirmAlert = ({message, onConfirm, onDismiss}) => {
+    //initialisation
+    //state
+    //handler
+
+    const handleConfirm = () => {
+        onConfirm();
+        onDismiss();
+    };
+    
+    return (
+        <Modal title='Confirmation Needed' headerColor='Limegreen'>
+            <Spacer>
+                <p className='alertMessage'>{message}</p>
+                <Action.Tray>
+                    <Action.Yes showText onClick={handleConfirm}/> {/*TBC bc girlfriend told me to get off my laptop and get a life :P */}
+                    <Action.Dismiss showText onClick={onDismiss}/>
+                </Action.Tray>
+            </Spacer>
+        </Modal>
+    );
+};
+
 export const useAlert = () => {
     //state...................
     const [isOpen, openModal, close] = useModal(false); //form is closed as thid id the state (moved from module)

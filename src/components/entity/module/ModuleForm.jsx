@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useLoad from '../../api/useLoad.js';
 import apiURL from '../../api/apiURL.js';
 import Action from '../../UI/Actions';
+import { ConfirmAlert, useAlert } from '../../UI/Alert.jsx';
 import Spacer from '../../UI/Spacer.jsx';
 import './ModuleForm.scss';
 
@@ -48,6 +49,7 @@ function ModuleForm ({onSubmit, onCancel}) { //the onCancel prop lives in the mo
     const [module, setModule] = useState (initialModule);
     const [years, loadingYearsMessage] = useLoad(yearsEndpoint);
     const [staff, loadingUserMessage] = useLoad(staffEndpoint);
+    const [isConfirmOpen, ConfirmMessage, openConfirm, closeConfirm] = useAlert();
 
     //handlers...
 
@@ -66,6 +68,9 @@ function ModuleForm ({onSubmit, onCancel}) { //the onCancel prop lives in the mo
 
     return (
         <div className='moduleForm'>
+
+            {isConfirmOpen && <ConfirmAlert message={ConfirmMessage} onDismiss={closeConfirm} onConfirm={handleSubmit} />}
+
             <Spacer>
                 <div className='FormTray'>
 
@@ -134,7 +139,7 @@ function ModuleForm ({onSubmit, onCancel}) { //the onCancel prop lives in the mo
             </div>
 
             <Action.Tray>
-                <Action.Submit showText onClick={handleSubmit} />
+                <Action.Submit showText onClick={() => openConfirm('Are you sure you want to submit?')} />
                 <Action.Cancel showText buttonText='Cancel' onClick={onCancel} /> {/*we call it here */}
             </Action.Tray>
             </Spacer>
