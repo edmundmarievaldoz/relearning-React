@@ -1,10 +1,10 @@
 import "./Header.scss";
-import AuthContext from "../auth/AuthContext.js";
-import { useContext } from "react";
+import { UseAuth } from "../auth/AuthContext.jsx";
+
 
 function Header() {
     // Initialisation
-    const loggedInUser = useContext(AuthContext);
+    const {loggedInUser} = UseAuth();
 
     // State
 
@@ -15,14 +15,12 @@ function Header() {
     return (
         <header>
             <h1>Basic React Demo</h1>
+            {loggedInUser &&
             <p className ="welcome"> Welcome {loggedInUser.UserFirstname}!</p>
+            }
         </header>
     );
 
 }
 
 export default Header;
-
-//props have been passed in from the parent component 
-// (App.jsx) and can be used in this child component (Header.jsx) 
-// to display the logged in user's name.

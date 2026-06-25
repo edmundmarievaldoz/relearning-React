@@ -1,4 +1,4 @@
-import AuthContext from "./components/auth/AuthContext.js";
+import {AuthProvider} from "./components/auth/AuthContext.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout.jsx";
 import Home from "./components/views/Home.jsx";
@@ -9,18 +9,15 @@ import PageNotFound from "./components/views/PageNotFound.jsx";
 function App() {
   
   // Initialisation ---------------
-  const loggedInUser = {
-    UserID: 820,
-    UserFirstname:'Edmund',
-    UserUsertype: 1,
-};
 
 // State ------------------------------
+
 // Handlers ----------------------------
+
 // View -------------------------------------
 
   return (
-    <AuthContext value={loggedInUser}>
+    <AuthProvider>
     <BrowserRouter>
       <Layout>
         <Routes> {/* anything in here will be displayed based on the current route */}
@@ -31,7 +28,7 @@ function App() {
         </Routes>
       </Layout>
     </BrowserRouter>
-    </AuthContext>
+    </AuthProvider>
   )
 }
 
