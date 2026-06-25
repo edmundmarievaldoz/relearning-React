@@ -1,11 +1,21 @@
 import "./Header.scss";
+import AuthContext from "../auth/AuthContext.js";
+import { useContext } from "react";
 
-function Header(props) {
+function Header() {
+    // Initialisation
+    const loggedInUser = useContext(AuthContext);
+
+    // State
+
+    //Handlers
+
+    // Views
 
     return (
         <header>
             <h1>Basic React Demo</h1>
-            <p className ="welcome"> Welcome {props.userName}!</p>
+            <p className ="welcome"> Welcome {loggedInUser.UserFirstname}!</p>
         </header>
     );
 
