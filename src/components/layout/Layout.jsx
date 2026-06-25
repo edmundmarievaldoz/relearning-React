@@ -3,17 +3,17 @@ import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
 import './Layout.scss';
 
-function Layout (props) {
+function Layout ({ children}) {
     return (
            <div className = "Layout">
 
-      <Header userName={props.userName}/>
+      <Header />
 
       <Navbar />
 
       <main>
         {
-            props.children
+           children
         }
       </main>
 
