@@ -1,5 +1,5 @@
-
 import  './Login.scss';
+import { useNavigate } from 'react-router-dom';
 import Action from '../UI/Actions.jsx';
 import { UseAuth } from '../auth/AuthContext.jsx';
 
@@ -18,8 +18,15 @@ const student = {
 const Login = () => {
     // Initialisation--------------------------------------
     const { login } = UseAuth();
+    const navigate = useNavigate();
     // State ----------------------------------------------
     // Handlers -------------------------------------------
+    const handleLogin = (user) => {
+        login(user);
+        navigate('/');
+    };
+
+
     // Views ----------------------------------------------
 
     return (
@@ -27,8 +34,8 @@ const Login = () => {
             <h1>Login</h1>
 
             <Action.Tray>
-                <Action.Add showText buttonText='Log in As Student' onClick={() => login(student)} />
-                <Action.Add showText buttonText='Log in As Lecturer' onClick={() => login(staff)}/>
+                <Action.Add showText buttonText='Log in As Student' onClick={() => handleLogin(student)} />
+                <Action.Add showText buttonText='Log in As Lecturer' onClick={() => handleLogin(staff)}/>
             </Action.Tray>
         
         </>
