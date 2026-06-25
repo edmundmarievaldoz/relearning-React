@@ -13,6 +13,10 @@ function Navbar() {
             <div className='navItem'>
                 <NavLink to="/students">Students</NavLink>
             </div>
+
+            <div className='navItem'>
+                <NavLink to='/login'>Log In</NavLink>
+            </div>
         </nav>
     );
 }
